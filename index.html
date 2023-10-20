@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button-row">
+            <button onClick="addNew()">Add New</button>
+            <button onclick="displayTasks(tasks)">All</button>
+            <button onclick="showHigh(tasks)">High</button>
+            <button onclick="showMedium(tasks)">Medium</button>
+            <button onclick="showLow(tasks)">Low</button>
+            <button onClick="showComplete(tasks)">Completed</button>
+            <button onClick="showIncomplete(tasks)">Incomplete</button>
+            <button onClick="sortDue(tasks)">Sort by Due Date</button>
+            <button onClick="sortPriority(tasks)">Sort by Priority</button>
+
+
+        </div>
+        <div class="form-container">
+            <input class="form-box" id="new-task" type="text" placeholder="Task Name">
+            <input class="form-box" id="due-date" type="date">
+            <select class="form-box" id="priority" name="">
+                <option value="1-High">1-High</option>
+                <option value="2-Medium">2-Medium</option>
+                <option value="3-Low">3-Low</option>
+            </select>
+            <button onclick="addTask()">Add</button>
+        </div>
+        <div class="list-container">
+        <div class="label-container">
+            <div class="column-label">Task</div>
+            <div class="column-label">Due Date</div>
+            <div class="column-label">Priority</div>
+            <div class="column-label">Status</div>
+        </div>
+            <div class="task-list">
+        </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
