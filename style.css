@@ -55,3 +55,26 @@ body{
     border: none;
     font-size: 14px;
 }
+
+@media screen and (max-width: 600px){
+
+    *{
+        font-size: 14px;
+    }
+    
+    .container{
+        padding: 10px;
+    }
+
+    .label-container, .task-item, .form-container, .button-row{
+        
+    }
+
+    .column-label{
+        font-size: 14px;
+    }
+
+    .form-box{
+        font-size: 11px;
+    }
+}

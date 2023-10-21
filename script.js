@@ -128,8 +128,8 @@ function createLine(lineItem){
     displayStatus.innerText = lineItem.status;
     displayLine.appendChild(displayStatus);
     if (lineItem.status != "Completed"){
-        const editButton = document.createElement('button');
-        editButton.innerText = "Edit";
+        const editButton = document.createElement('i');
+        editButton.classList = "bi bi-pencil-square";
         editButton.addEventListener("click", () => editTask(lineItem.id));
         displayLine.appendChild(editButton);
     }
