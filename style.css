@@ -32,7 +32,7 @@ body{
 }
 
 .label-container, .task-item, .form-container{
-    grid-template-columns: 2fr repeat(5, 1fr);
+    grid-template-columns: 2fr repeat(6, 1fr);
 }
 
 .button-row{

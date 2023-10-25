@@ -36,7 +36,7 @@ function editTask(editTarget){
     const taskToEdit = document.getElementById(editTarget);
     const pulledTask = tasks.find((task) => task.id == editTarget);
     const priorityOptions = ["1-High", "2-Medium", "3-Low"];
-    const statusOptions = ["Incomplete", "Completed"];
+    taskToEdit.classList = "task-item edit";
    
     taskToEdit.innerHTML = "";
     const taskForm = document.createElement("input");
@@ -65,33 +65,22 @@ function editTask(editTarget){
         priorityDrop.appendChild(option);
     });
     taskToEdit.appendChild(priorityDrop);
-    const statusDrop = document.createElement("select");
-    statusDrop.classList = "form-box";
-    statusDrop.id = "update-status";
-    statusOptions.forEach((status) => {
-        const option = document.createElement("option");
-        option.value = status;
-        option.innerText = status;
-        if(status === pulledTask.status){
-            option.setAttribute("selected", true);
-        }
-        statusDrop.appendChild(option);
-    });
-    taskToEdit.appendChild(statusDrop);
+    const statusDisplay = document.createElement("div");
+    statusDisplay.innerText = pulledTask.status;
+    taskToEdit.appendChild(statusDisplay);
 
-    const updateButton = document.createElement("button");
-    updateButton.innerText = "Update";
-    updateButton.addEventListener("click", () => updateTask(taskForm.value, dateForm.value, priorityDrop.value, statusDrop.value, editTarget));
+    const updateButton = document.createElement("i");
+    updateButton.classList = "bi bi-save";
+    updateButton.addEventListener("click", () => updateTask(taskForm.value, dateForm.value, priorityDrop.value, editTarget));
     taskToEdit.appendChild(updateButton);
 }
 
-function updateTask(newTaskName, newDue, newPriority, newStatus, editTarget){
+function updateTask(newTaskName, newDue, newPriority, editTarget){
     tasks.forEach((task) => {
         if (task.id == editTarget){
             task.name = newTaskName;
             task.dueDate = newDue;
             task.priority = newPriority;
-            task.status = newStatus;
         }
     })
     saveTasks();
@@ -128,15 +117,22 @@ function createLine(lineItem){
     displayStatus.innerText = lineItem.status;
     displayLine.appendChild(displayStatus);
     if (lineItem.status != "Completed"){
+        const completeButton = document.createElement('i');
+        completeButton.classList = "bi-check-circle";
+        completeButton.addEventListener("click", () => completeTask(lineItem.id));
+        displayLine.appendChild(completeButton);
+
         const editButton = document.createElement('i');
-        editButton.classList = "bi bi-pencil-square";
+        editButton.classList = "bi-pencil-square";
         editButton.addEventListener("click", () => editTask(lineItem.id));
         displayLine.appendChild(editButton);
     }
-    const deleteButton = document.createElement('button');
-    deleteButton.innerText = "Delete";
+    const deleteButton = document.createElement('i');
+    deleteButton.classList = "bi-trash"
     deleteButton.addEventListener("click", () => deleteTask(lineItem.id));
     displayLine.appendChild(deleteButton);
+
+
     return displayLine;
 }
 
@@ -200,5 +196,15 @@ if (tasks.length === 0){
     addNew();
 }
 else {
+    displayTasks(tasks);
+}
+
+function completeTask(completeTarget){
+    tasks.forEach((task) => {
+        if (task.id == completeTarget){
+            task.status = "Completed";
+        }
+    })
+    saveTasks();
     displayTasks(tasks);
 }
